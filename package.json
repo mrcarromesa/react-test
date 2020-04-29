@@ -3,21 +3,27 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
+    "@testing-library/jest-dom": "^5.5.0",
+    "@testing-library/react": "^10.0.3",
     "@testing-library/user-event": "^7.1.2",
+    "axios": "^0.19.2",
+    "immer": "^6.0.3",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1"
+    "react-redux": "^7.2.0",
+    "react-scripts": "3.4.0",
+    "redux": "^4.0.5",
+    "redux-saga": "^1.1.3"
+  },
+  "resolutions": {
+    "jest": "25.1.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "SKIP_PREFLIGHT_CHECK=true react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "SKIP_PREFLIGHT_CHECK=true react-app-rewired test",
+    "coverage": "SKIP_PREFLIGHT_CHECK=true react-app-rewired test --coverage --collectCoverageFrom=!src/index.js --collectCoverageFrom=!src/App.js --collectCoverageFrom=!src/services/api.js --collectCoverageFrom=!__tests__/** --watchAll=false",
     "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
   },
   "browserslist": {
     "production": [
@@ -30,5 +36,51 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/jest": "^25.2.1",
+    "axios-mock-adapter": "^1.18.1",
+    "babel-eslint": "^10.1.0",
+    "babel-plugin-root-import": "^6.5.0",
+    "customize-cra": "^0.9.1",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-import-resolver-babel-plugin-root-import": "^1.1.1",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.3",
+    "eslint-plugin-react": "^7.19.0",
+    "eslint-plugin-react-hooks": "^2.5.1",
+    "jest-localstorage-mock": "^2.4.0",
+    "prettier": "^2.0.5",
+    "react-app-rewired": "^2.1.5"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "!src/App.js",
+      "!**/App.js",
+      "!**/**.js",
+      "!**.js",
+      "!*.js",
+      "!*.*",
+      "!**"
+    ],
+    "roots": [
+      "<rootDir>/__tests__/"
+    ],
+    "testMatch": [
+      "**/__tests__/**/*.test.js"
+    ],
+    "setupFilesAfterEnv": [
+      "@testing-library/react",
+      "@testing-library/jest-dom",
+      "@testing-library/jest-dom/extend-expect",
+      "jest-localstorage-mock"
+    ],
+    "moduleNameMapper": {
+      "^~/(.*)": "<rootDir>/src/$1"
+    },
+    "coverageDirectory": "__tests__/coverage"
   }
 }
